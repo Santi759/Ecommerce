@@ -1,5 +1,7 @@
 import { useMemo, useRef, useState } from "react";
 import "./App.css";
+import { agregarAlCarrito } from "./carrito";
+import { Link } from "react-router-dom";
 
 export default function App() {
   const trackRef = useRef(null);
@@ -117,13 +119,13 @@ export default function App() {
           </div>
 
           <div className="icons">
-            <button className="icon-btn" title="Carrito" aria-label="Carrito" disabled>
+            <Link to="/carrito" className="icon-btn" title="Carrito" aria-label="Carrito">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                 <path d="M6 6h15l-1.5 8.5H7.5L6 6Z" stroke="currentColor" strokeWidth="2" />
                 <circle cx="9" cy="20" r="1.5" fill="currentColor" />
                 <circle cx="18" cy="20" r="1.5" fill="currentColor" />
               </svg>
-            </button>
+            </Link>
             <button className="icon-btn" title="Notificaciones" aria-label="Notificaciones" disabled>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                 <path d="M12 3a6 6 0 0 0-6 6v4l-2 3h16l-2-3V9a6 6 0 0 0-6-6Z" stroke="currentColor" strokeWidth="2" />
@@ -187,7 +189,7 @@ export default function App() {
         <section className="grid" aria-label="Productos">
           {current.map((p) => (
             <article className="card product" key={p.id}>
-              <button className="add-btn" type="button" aria-label={`Agregar ${p.name}`}>
+              <button className="add-btn" type="button" aria-label={`Agregar ${p.name}`} onClick={()=> agregarAlCarrito(p)}>
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                 </svg>
